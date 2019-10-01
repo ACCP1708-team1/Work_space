@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="my_template"
+		template="/WEB-INF/views/template/mytemplate.jsp">
+		<put-attribute name="content"></put-attribute>
+	</definition>
+	<definition name="default.home" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/home.jsp"></put-attribute>
+	</definition>
+<!-- 	Service tiles -->
+	<definition name="default.detail-service" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/service/detail-service.jsp"></put-attribute>
+	</definition>
+	<definition name="default.services-all" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/service/services-all.jsp"></put-attribute>
+	</definition>
+	<definition name="default.services-category" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/service/services-category.jsp"></put-attribute>
+	</definition>
+<!-- Project tiles -->
+	<definition name="default.projects-findAll" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/project/projects-findAll.jsp"></put-attribute>
+	</definition>
+	<definition name="default.project-detail" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/project/detail-project.jsp"></put-attribute>
+	</definition>
+	<definition name="default.projects-status" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/project/projects-status.jsp"></put-attribute>
+	</definition>
+<!-- 	RegisterService Tiles -->
+	<definition name="default.registerService-AccountId" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/byAccountId.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-allStatus" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/allStatus.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-onGoing" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/onGoing.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-UpComing" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/UpComing.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-Accomplished" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/Accomplished.jsp"></put-attribute>
+	</definition>
+	<definition name="default.registerService-findById" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/findById.jsp"></put-attribute>
+	</definition>
+	<definition name="default.addRegisterService" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/default/registerService/add.jsp"></put-attribute>
+	</definition>
+<!-- 	Login tiles -->
+
+	<definition name="user.login" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"></put-attribute>
+	</definition>
+	<definition name="user.register" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/login/register.jsp"></put-attribute>
+	</definition>
+	<definition name="user.logout" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/login/logout.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>

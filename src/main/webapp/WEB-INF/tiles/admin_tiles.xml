@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="admin_template"
+		template="/WEB_INF/views/template/admin_template">
+		<put-attribute name="content" value=""></put-attribute>
+	</definition>
+	<definition name="admin.account.index"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/account/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.category.index"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/category/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.product.index"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/product/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.index">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/index.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>
