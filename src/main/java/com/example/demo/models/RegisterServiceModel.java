@@ -34,4 +34,8 @@ public class RegisterServiceModel implements ModelInteface<RegisterService>{
 		registerServiceRepository.deleteById(id);
 	}
 
+	public RegisterServiceModel() {
+		super();
+	}
+	
 }

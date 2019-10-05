@@ -2,6 +2,9 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import java.util.List;
 
@@ -28,20 +31,20 @@ public class Account implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdate;
-
 	private String email;
 
 	private String facebook;
 
 	private String fullname;
-
+	
 	private String phone;
 
 	private byte sex;
 
 	private byte status;
-
+	
 	private String username;
+	
 	private String password;
 
 	public String getPassword() {

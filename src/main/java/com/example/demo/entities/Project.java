@@ -27,7 +27,7 @@ public class Project implements Serializable {
 	@Column(name="end_date")
 	private Date endDate;
 
-	private int name;
+	private String name;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
@@ -81,11 +81,11 @@ public class Project implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public int getName() {
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

@@ -23,6 +23,16 @@ public class Servicer implements Serializable {
 
 	private String title;
 
+
+	private String avatar;
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	//bi-directional many-to-one association to RegisterService
 	@OneToMany(mappedBy="servicer")
 	private List<RegisterService> registerServices;

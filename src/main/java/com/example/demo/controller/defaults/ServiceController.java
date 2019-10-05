@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.entities.Servicer;
+import com.example.demo.models.LoadDataTemplate;
 import com.example.demo.repository.ServicerRepository;
 
 @Controller
@@ -15,12 +16,14 @@ import com.example.demo.repository.ServicerRepository;
 public class ServiceController {
 	@Autowired
 	private ServicerRepository servicerRepository;
-
+	@Autowired
+	LoadDataTemplate loadDataTemplate;
 //	Show list by id category
 	@RequestMapping(value = "/listByCategory/{id_category}", method = RequestMethod.GET)
 	public String listByCategory(@PathVariable("id_category") int id_category, ModelMap modelMap) {
 		Iterable<Servicer> servicers = servicerRepository.findAllByCategoryId(id_category);
 		modelMap.addAttribute(servicers);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.services-category";
 	}
 //Show detail by id
@@ -28,6 +31,7 @@ public class ServiceController {
 	public String detailById(@PathVariable("id") int id,ModelMap modelMap) {
 		Servicer servicer=servicerRepository.findById(id).get();
 		modelMap.addAttribute("servicer",servicer);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.detail-service";
 	}
 	
@@ -35,6 +39,7 @@ public class ServiceController {
 	public String findAll(ModelMap modelMap) {
 		Iterable<Servicer> servicers=servicerRepository.findAll();
 		modelMap.addAttribute(servicers);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.services-all";
 	}
 }

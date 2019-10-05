@@ -29,7 +29,7 @@ public class RegisterService implements Serializable {
 
 	//bi-directional many-to-one association to Invoce
 	@OneToOne(mappedBy="registerService")
-	private Invoce invoce;
+	private Invoice invoce;
 
 	//bi-directional many-to-one association to Account
 	@ManyToOne
@@ -90,11 +90,11 @@ public class RegisterService implements Serializable {
 		return customerReport;
 	}
 
-	public Invoce getInvoce() {
+	public Invoice getInvoce() {
 		return this.invoce;
 	}
 
-	public void setInvoce(Invoce invoce) {
+	public void setInvoce(Invoice invoce) {
 		this.invoce = invoce;
 	}
 

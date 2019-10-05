@@ -3,12 +3,14 @@ package com.example.demo.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.ProjectStatus;
 import com.example.demo.repository.ProjectStatusRepository;
 
+@Service
 public class ProjectStatusModel implements ModelInteface<ProjectStatus>{
-	@Autowired
+	//@Autowired
 	private ProjectStatusRepository projectStatusRepository;
 	@Override
 	public List<ProjectStatus> findAll() {
@@ -33,5 +35,11 @@ public class ProjectStatusModel implements ModelInteface<ProjectStatus>{
 		// TODO Auto-generated method stub
 		projectStatusRepository.deleteById(id);
 	}
-
+	@Autowired
+	public ProjectStatusModel(ProjectStatusRepository projectStatusRepository) {
+		super();
+		this.projectStatusRepository = projectStatusRepository;
+	}
+	
+	
 }

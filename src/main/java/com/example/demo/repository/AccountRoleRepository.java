@@ -1,11 +1,20 @@
 package com.example.demo.repository;
 
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
 import com.example.demo.entities.AccountRole;
 
 public interface AccountRoleRepository extends CrudRepository<AccountRole,Integer>{
-//	@Query("from register where username=:user")
-//	public Account findWithUsername(@Param("user") String user);
-//	@Query("from register where lastname=:user")
-//	public List<Account> findWithLastname(@Param("last") String last);
+
+	@Override
+	@Query("from AccountRole where id=:id and status=1")
+	Optional<AccountRole> findById(@Param("id") Integer id);
+	@Override
+	@Query("from AccountRole where status=1")
+	Iterable<AccountRole> findAll();
+	
 }

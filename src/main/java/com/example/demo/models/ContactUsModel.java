@@ -3,10 +3,11 @@ package com.example.demo.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.ContactUs;
 import com.example.demo.repository.ContactUsRepository;
-
+@Service
 public class ContactUsModel implements ModelInteface<ContactUs>{
 	@Autowired
 	private ContactUsRepository contactUsRepository;
@@ -33,5 +34,12 @@ public class ContactUsModel implements ModelInteface<ContactUs>{
 		// TODO Auto-generated method stub
 		contactUsRepository.deleteById(id);
 	}
+	public ContactUs getNewContact() {
+		return contactUsRepository.newContact();
+	}
 
+	public ContactUsModel() {
+		super();
+	}
+	
 }

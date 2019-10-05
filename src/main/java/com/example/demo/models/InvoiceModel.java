@@ -34,4 +34,8 @@ public class InvoiceModel implements ModelInteface<Invoice>{
 		invoiceRepository.deleteById(id);
 	}
 
+	public InvoiceModel() {
+		super();
+	}
+	
 }

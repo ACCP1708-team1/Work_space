@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.entities.Project;
+import com.example.demo.models.LoadDataTemplate;
 import com.example.demo.repository.ProjectRepository;
 
 @Controller
@@ -16,12 +17,14 @@ import com.example.demo.repository.ProjectRepository;
 public class ProjectController {
 	@Autowired
 	private ProjectRepository projectRepository;
-
+	@Autowired
+	LoadDataTemplate loadDataTemplate;
 //	Show list Project by status project
 	@RequestMapping(value = "/listByStatus/{idProjectStatus}", method = RequestMethod.GET)
 	public String listProject(@PathVariable("idProjectStatus") int id, ModelMap modelMap) {
 		List<Project> projects = projectRepository.findByIdStatus(id);
 		modelMap.addAttribute("projects", projects);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.projects-status";
 	}
 
@@ -30,6 +33,7 @@ public class ProjectController {
 	public String detailProject(@PathVariable("id") int id, ModelMap modelMap) {
 		Project project = projectRepository.findById(id).get();
 		modelMap.addAttribute("project", project);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.project-detail";
 	}
 //Show All project
@@ -37,6 +41,7 @@ public class ProjectController {
 	public String findAll( ModelMap modelMap) {
 		Iterable<Project> projects=projectRepository.findAll();
 		modelMap.addAttribute("projects", projects);
+		loadDataTemplate.setDataTemplate(modelMap);
 		return "default.projects-findAll";
 	}
 }

@@ -34,4 +34,8 @@ public class ProjectPhotoModel implements ModelInteface<ProjectPhoto>{
 		projectPhotoRepository.deleteById(id);
 	}
 
+	public ProjectPhotoModel() {
+		super();
+	}
+	
 }

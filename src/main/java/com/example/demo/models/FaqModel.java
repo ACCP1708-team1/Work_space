@@ -3,13 +3,15 @@ package com.example.demo.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Faq;
 import com.example.demo.repository.FaqRepository;
 
-public class FaqModel implements ModelInteface<Faq>{
-	@Autowired
+@Service
+public class FaqModel implements ModelInteface<Faq> {
 	private FaqRepository faqRepository;
+
 	@Override
 	public List<Faq> findAll() {
 		// TODO Auto-generated method stub
@@ -33,5 +35,11 @@ public class FaqModel implements ModelInteface<Faq>{
 		// TODO Auto-generated method stub
 		faqRepository.deleteById(id);
 	}
+@Autowired
+	public FaqModel(FaqRepository faqRepository) {
+		super();
+		this.faqRepository = faqRepository;
+	}
+	
 
 }
