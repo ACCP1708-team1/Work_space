@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2019 at 06:44 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Oct 05, 2019 at 06:53 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -106,10 +106,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `category_name`, `title`, `status`, `avatar`, `description`) VALUES
-(1, 'Decorating the House', 'Decorating the House', 1, '', 'Decorating and Furnishing with Furniture And Glass\r\nKitchen Design\r\nFlooring Layout\r\nLightning Effects\r\nWindow Coverings\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Ali'),
-(2, 'Decorating the Offices', 'Decorating the Offices', 1, '', 'Decorating and Furnishing with Furniture and Glass, etc.\r\nFlooring Layout\r\nLightning Effects\r\nWindow Coverings\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.'),
-(3, 'Decoration of the “Community Halls” or “Function Halls” or “Banquet Halls” for Parties or get-togethers or Office meetings or seminars.', 'Decoration of the “Community Halls” or “Function Halls” or “Banquet Halls” for Parties or get-togethers or Office meetings or seminars.', 1, '', 'Decorating and Furnishing with Furniture and Glass, etc.\r\nWindow Coverings\r\nLightning Effects\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.'),
-(4, 'Decoration of the Restaurants', 'Decoration of the Restaurants', 1, '', 'Decorating and Furnishing with Furniture And Glass\r\nKitchen Design\r\nFlooring Layout\r\nWindow Coverings\r\nLightning Effects\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.');
+(1, 'Decorating the House', 'Decorating the House', 1, 'category_home.jpg', 'Decorating and Furnishing with Furniture And Glass\r\nKitchen Design\r\nFlooring Layout\r\nLightning Effects\r\nWindow Coverings\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Ali'),
+(2, 'Decorating the Offices', 'Decorating the Offices', 1, 'category_home2.jpg', 'Decorating and Furnishing with Furniture and Glass, etc.\r\nFlooring Layout\r\nLightning Effects\r\nWindow Coverings\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.'),
+(3, 'Orther', 'Orther', 1, 'category_home3.jpg', 'Decorating and Furnishing with Furniture and Glass, etc.\r\nWindow Coverings\r\nLightning Effects\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.'),
+(4, 'Decoration of the Restaurants', 'Decoration of the Restaurants', 1, 'category_home4.jpg', 'Decorating and Furnishing with Furniture And Glass\r\nKitchen Design\r\nFlooring Layout\r\nWindow Coverings\r\nLightning Effects\r\nColour Schemes\r\nCurtain Designing\r\nArchitectural design\r\nPlanting\r\nSeating Alignment, etc.');
 
 -- --------------------------------------------------------
 
@@ -236,7 +236,7 @@ CREATE TABLE `page` (
 
 CREATE TABLE `project` (
   `id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
@@ -245,6 +245,15 @@ CREATE TABLE `project` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `name`, `start_date`, `end_date`, `title`, `id_status_project`, `status`, `description`, `avatar`) VALUES
+(1, 'Saigon Opera House', '2018-12-09', '2020-03-28', 'Under construction at 03 Le Lai, District 1, Ho Chi Minh City', 1, 1, 'Implementation: Ateam and some corporations such as VNGroup, City Land, Nova Land, etc.', 'project3.jpg'),
+(2, 'Garden of Eden', '2018-08-01', '2021-03-31', 'Under construction at 330 Nguyen Kiem, District Phu Nhuan, Ho Chi Minh City', 2, 1, 'Implementation: Ateam', 'project2.jpg'),
+(3, 'Golden Villas', '2017-08-01', '2018-08-01', 'Under construction at 04 Nguyen Oanh, District Go Vap, Ho Chi Minh City', 3, 1, 'Implementation: Ateam and some corporations such as VNGroup, City Land, Nova Land, etc.\r\n\r\n', 'project1.jpg');
 
 -- --------------------------------------------------------
 
@@ -279,9 +288,9 @@ CREATE TABLE `project_status` (
 --
 
 INSERT INTO `project_status` (`id`, `name`, `description`, `status`, `avatar`) VALUES
-(1, 'On going', '', 1, ''),
-(2, 'Up coming', '', 1, ''),
-(3, 'Accomplished', '', 1, '');
+(1, 'On going', 'List of projects being implemented by Ateam', 1, 'project_ongoing .jpg'),
+(2, 'Up coming', 'List of upcoming projects made by Ateam', 1, 'project_Upcomming.jpg'),
+(3, 'Accomplished', 'List of projects completed by Ateam', 1, 'project_Accomplished.jpg');
 
 -- --------------------------------------------------------
 
@@ -306,6 +315,7 @@ CREATE TABLE `register_service` (
 CREATE TABLE `servicer` (
   `id` int(11) NOT NULL,
   `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `avatar` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `id_category` int(11) NOT NULL,
   `description` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
@@ -315,44 +325,44 @@ CREATE TABLE `servicer` (
 -- Dumping data for table `servicer`
 --
 
-INSERT INTO `servicer` (`id`, `title`, `id_category`, `description`, `status`) VALUES
-(1, 'Decorating and Furnishing with Furniture And Glass', 1, 1, 1),
-(2, 'Kitchen Design', 1, 1, 1),
-(3, 'Flooring Layout', 1, 1, 1),
-(4, 'Lightning Effects', 1, 1, 1),
-(5, 'Window Coverings', 1, 1, 1),
-(6, 'Colour Schemes', 1, 1, 1),
-(7, 'Curtain Designing', 1, 1, 1),
-(8, 'Architectural design', 1, 1, 1),
-(9, 'Planting', 1, 1, 1),
-(10, 'Seating Alignment in the Living Rooms', 1, 1, 1),
-(11, 'Decorating the Offices', 2, 1, 1),
-(12, 'Decorating and Furnishing with Furniture and Glass', 2, 1, 1),
-(13, 'Flooring Layout', 2, 1, 1),
-(14, 'Lightning Effects', 2, 1, 1),
-(15, 'Window Coverings', 2, 1, 1),
-(16, 'Colour Schemes', 2, 1, 1),
-(17, 'Curtain Designing', 2, 1, 1),
-(18, 'Architectural design', 2, 1, 1),
-(19, 'Planting', 2, 1, 1),
-(20, 'Seating Alignment', 2, 1, 1),
-(21, 'Decorating and Furnishing with Furniture and Glass', 3, 1, 1),
-(22, 'Window Coverings', 3, 1, 1),
-(23, 'Lightning Effects', 3, 1, 1),
-(24, 'Curtain Designing', 3, 1, 1),
-(25, 'Architectural design', 3, 1, 1),
-(32, 'Planting', 3, 1, 1),
-(33, 'Seating Alignment', 3, 1, 1),
-(34, 'Decorating and Furnishing with Furniture And Glass', 4, 1, 1),
-(35, 'Kitchen Design', 4, 1, 1),
-(36, 'Flooring Layout', 4, 1, 1),
-(37, 'Window Coverings', 4, 1, 1),
-(38, 'Lightning Effects', 4, 1, 1),
-(39, 'Colour Schemes', 4, 1, 1),
-(40, 'Curtain Designing', 4, 1, 1),
-(41, 'Architectural design', 4, 1, 1),
-(42, 'Planting', 4, 1, 1),
-(43, 'Seating Alignment', 4, 1, 1);
+INSERT INTO `servicer` (`id`, `title`, `avatar`, `id_category`, `description`, `status`) VALUES
+(1, 'Decorating and Furnishing with Furniture And Glass', 'Service_architectural_01.jpeg', 1, 1, 1),
+(2, 'Kitchen Design', '', 1, 1, 1),
+(3, 'Flooring Layout', '', 1, 1, 1),
+(4, 'Lightning Effects', '', 1, 1, 1),
+(5, 'Window Coverings', '', 1, 1, 1),
+(6, 'Colour Schemes', '', 1, 1, 1),
+(7, 'Curtain Designing', '', 1, 1, 1),
+(8, 'Architectural design', '', 1, 1, 1),
+(9, 'Planting', '', 1, 1, 1),
+(10, 'Seating Alignment in the Living Rooms', '', 1, 1, 1),
+(11, 'Decorating the Offices', '', 2, 1, 1),
+(12, 'Decorating and Furnishing with Furniture and Glass', '', 2, 1, 1),
+(13, 'Flooring Layout', '', 2, 1, 1),
+(14, 'Lightning Effects', '', 2, 1, 1),
+(15, 'Window Coverings', '', 2, 1, 1),
+(16, 'Colour Schemes', '', 2, 1, 1),
+(17, 'Curtain Designing', '', 2, 1, 1),
+(18, 'Architectural design', '', 2, 1, 1),
+(19, 'Planting', '', 2, 1, 1),
+(20, 'Seating Alignment', '', 2, 1, 1),
+(21, 'Decorating and Furnishing with Furniture and Glass', '', 3, 1, 1),
+(22, 'Window Coverings', '', 3, 1, 1),
+(23, 'Lightning Effects', '', 3, 1, 1),
+(24, 'Curtain Designing', '', 3, 1, 1),
+(25, 'Architectural design', '', 3, 1, 1),
+(32, 'Planting', '', 3, 1, 1),
+(33, 'Seating Alignment', '', 3, 1, 1),
+(34, 'Decorating and Furnishing with Furniture And Glass', '', 4, 1, 1),
+(35, 'Kitchen Design', '', 4, 1, 1),
+(36, 'Flooring Layout', '', 4, 1, 1),
+(37, 'Window Coverings', '', 4, 1, 1),
+(38, 'Lightning Effects', '', 4, 1, 1),
+(39, 'Colour Schemes', '', 4, 1, 1),
+(40, 'Curtain Designing', '', 4, 1, 1),
+(41, 'Architectural design', '', 4, 1, 1),
+(42, 'Planting', '', 4, 1, 1),
+(43, 'Seating Alignment', '', 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -549,7 +559,7 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project_photo`
