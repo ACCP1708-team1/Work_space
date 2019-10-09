@@ -3,12 +3,12 @@ package com.example.demo.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.AccountRole;
 import com.example.demo.repository.AccountRoleRepository;
-
+@Service
 public class AccountRoleModel implements ModelInteface<AccountRole>{
-	@Autowired
 	private AccountRoleRepository accountRoleRepository;
 	@Override
 	public List<AccountRole> findAll() {
@@ -33,5 +33,11 @@ public class AccountRoleModel implements ModelInteface<AccountRole>{
 		// TODO Auto-generated method stub
 		accountRoleRepository.deleteById(id);
 	}
+	@Autowired
+	public AccountRoleModel(AccountRoleRepository accountRoleRepository) {
+		super();
+		this.accountRoleRepository = accountRoleRepository;
+	}
+	
 
 }

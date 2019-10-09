@@ -2,23 +2,27 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 
 /**
- * The persistent class for the invoice_detail database table.
+ * The persistent class for the pay database table.
  * 
  */
 @Entity
-@Table(name="invoice_detail")
-@NamedQuery(name="InvoiceDetail.findAll", query="SELECT i FROM InvoiceDetail i")
-public class InvoiceDetail implements Serializable {
+@NamedQuery(name="Pay.findAll", query="SELECT p FROM Pay p")
+public class Pay implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int id;
 
-	@Column(name="paid_money")
-	private double paidMoney;
+	@Temporal(TemporalType.DATE)
+	@Column(name="create_date")
+	private Date createDate;
+
+	private BigDecimal money;
 
 	private byte status;
 
@@ -27,12 +31,7 @@ public class InvoiceDetail implements Serializable {
 	@JoinColumn(name="id_invoice")
 	private Invoice invoice;
 
-	//bi-directional many-to-one association to Servicer
-	@ManyToOne
-	@JoinColumn(name="id_service")
-	private Servicer servicer;
-
-	public InvoiceDetail() {
+	public Pay() {
 	}
 
 	public int getId() {
@@ -43,12 +42,20 @@ public class InvoiceDetail implements Serializable {
 		this.id = id;
 	}
 
-	public double getPaidMoney() {
-		return this.paidMoney;
+	public Date getCreateDate() {
+		return this.createDate;
 	}
 
-	public void setPaidMoney(double paidMoney) {
-		this.paidMoney = paidMoney;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public BigDecimal getMoney() {
+		return this.money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
 	}
 
 	public byte getStatus() {
@@ -65,14 +72,6 @@ public class InvoiceDetail implements Serializable {
 
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
-	}
-
-	public Servicer getServicer() {
-		return this.servicer;
-	}
-
-	public void setServicer(Servicer servicer) {
-		this.servicer = servicer;
 	}
 
 }

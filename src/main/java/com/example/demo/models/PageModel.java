@@ -34,4 +34,8 @@ public class PageModel implements ModelInteface<Page>{
 		pageRepository.deleteById(id);
 	}
 
+	public PageModel() {
+		super();
+	}
+	
 }

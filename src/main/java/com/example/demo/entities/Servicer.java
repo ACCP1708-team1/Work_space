@@ -17,15 +17,17 @@ public class Servicer implements Serializable {
 	@Id
 	private int id;
 
+	private String avatar;
+
 	private int description;
 
 	private byte status;
 
 	private String title;
 
-	//bi-directional many-to-one association to RegisterService
+	//bi-directional many-to-one association to InvoiceDetail
 	@OneToMany(mappedBy="servicer")
-	private List<RegisterService> registerServices;
+	private List<InvoiceDetail> invoiceDetails;
 
 	//bi-directional many-to-one association to ServicePhoto
 	@OneToMany(mappedBy="servicer")
@@ -45,6 +47,14 @@ public class Servicer implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAvatar() {
+		return this.avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public int getDescription() {
@@ -71,26 +81,26 @@ public class Servicer implements Serializable {
 		this.title = title;
 	}
 
-	public List<RegisterService> getRegisterServices() {
-		return this.registerServices;
+	public List<InvoiceDetail> getInvoiceDetails() {
+		return this.invoiceDetails;
 	}
 
-	public void setRegisterServices(List<RegisterService> registerServices) {
-		this.registerServices = registerServices;
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
+		this.invoiceDetails = invoiceDetails;
 	}
 
-	public RegisterService addRegisterService(RegisterService registerService) {
-		getRegisterServices().add(registerService);
-		registerService.setServicer(this);
+	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().add(invoiceDetail);
+		invoiceDetail.setServicer(this);
 
-		return registerService;
+		return invoiceDetail;
 	}
 
-	public RegisterService removeRegisterService(RegisterService registerService) {
-		getRegisterServices().remove(registerService);
-		registerService.setServicer(null);
+	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().remove(invoiceDetail);
+		invoiceDetail.setServicer(null);
 
-		return registerService;
+		return invoiceDetail;
 	}
 
 	public List<ServicePhoto> getServicePhotos() {

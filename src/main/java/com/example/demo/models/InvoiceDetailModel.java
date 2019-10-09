@@ -3,10 +3,11 @@ package com.example.demo.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.entities.InvoiceDetail;
 import com.example.demo.repository.InvoiceDetailRepository;
-
+@Component
 public class InvoiceDetailModel implements ModelInteface<InvoiceDetail>{
 	@Autowired
 	private InvoiceDetailRepository invoiceRepository;
@@ -34,4 +35,8 @@ public class InvoiceDetailModel implements ModelInteface<InvoiceDetail>{
 		invoiceRepository.deleteById(id);
 	}
 
+	public InvoiceDetailModel() {
+		super();
+	}
+	
 }

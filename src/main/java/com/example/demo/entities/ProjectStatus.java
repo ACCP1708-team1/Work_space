@@ -18,21 +18,14 @@ public class ProjectStatus implements Serializable {
 	@Id
 	private int id;
 
+	private String avatar;
+
 	@Lob
 	private String description;
 
 	private String name;
-	private String avatar;
 
 	private byte status;
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
 
 	//bi-directional many-to-one association to Project
 	@OneToMany(mappedBy="projectStatus")
@@ -47,6 +40,14 @@ public class ProjectStatus implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAvatar() {
+		return this.avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public String getDescription() {

@@ -18,6 +18,8 @@ public class Invoice implements Serializable {
 	@Id
 	private int id;
 
+	private String address;
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="create_date")
 	private Date createDate;
@@ -28,17 +30,18 @@ public class Invoice implements Serializable {
 
 	private byte status;
 
-	@Column(name="total_price")
-	private double totalPrice;
+	//bi-directional many-to-one association to Account
+	@ManyToOne
+	@JoinColumn(name="id_account")
+	private Account account;
 
-	//bi-directional many-to-one association to RegisterService
-	@OneToOne
-	@JoinColumn(name="id_register_service")
-	private RegisterService registerService;
-
-	//bi-directional many-to-one association to InvoceDetail
+	//bi-directional many-to-one association to InvoiceDetail
 	@OneToMany(mappedBy="invoice")
 	private List<InvoiceDetail> invoiceDetails;
+
+	//bi-directional many-to-one association to Pay
+	@OneToMany(mappedBy="invoice")
+	private List<Pay> pays;
 
 	public Invoice() {
 	}
@@ -49,6 +52,14 @@ public class Invoice implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Date getCreateDate() {
@@ -75,42 +86,56 @@ public class Invoice implements Serializable {
 		this.status = status;
 	}
 
-	public double getTotalPrice() {
-		return this.totalPrice;
+	public Account getAccount() {
+		return this.account;
 	}
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
-	public RegisterService getRegisterService() {
-		return this.registerService;
-	}
-
-	public void setRegisterService(RegisterService registerService) {
-		this.registerService = registerService;
-	}
-
-	public List<InvoiceDetail> getInvoceDetails() {
+	public List<InvoiceDetail> getInvoiceDetails() {
 		return this.invoiceDetails;
 	}
 
-	public void setInvoceDetails(List<InvoiceDetail> invoiceDetails) {
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
 		this.invoiceDetails = invoiceDetails;
 	}
 
-	public InvoiceDetail addInvoceDetail(InvoiceDetail invoiceDetail) {
-		getInvoceDetails().add(invoiceDetail);
-		invoiceDetail.setInvoce(this);
+	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().add(invoiceDetail);
+		invoiceDetail.setInvoice(this);
 
 		return invoiceDetail;
 	}
 
-	public InvoiceDetail removeInvoceDetail(InvoiceDetail invoiceDetail) {
-		getInvoceDetails().remove(invoiceDetail);
-		invoiceDetail.setInvoce(null);
+	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().remove(invoiceDetail);
+		invoiceDetail.setInvoice(null);
 
 		return invoiceDetail;
+	}
+
+	public List<Pay> getPays() {
+		return this.pays;
+	}
+
+	public void setPays(List<Pay> pays) {
+		this.pays = pays;
+	}
+
+	public Pay addPay(Pay pay) {
+		getPays().add(pay);
+		pay.setInvoice(this);
+
+		return pay;
+	}
+
+	public Pay removePay(Pay pay) {
+		getPays().remove(pay);
+		pay.setInvoice(null);
+
+		return pay;
 	}
 
 }

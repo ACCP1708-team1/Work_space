@@ -34,4 +34,8 @@ public class ServicePhotoModel implements ModelInteface<ServicePhoto>{
 		servicePhotoRepository.deleteById(id);
 	}
 
-}
+	public ServicePhotoModel() {
+		super();
+	}
+	
+}	

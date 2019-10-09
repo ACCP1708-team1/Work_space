@@ -25,7 +25,7 @@ public class ServicePhoto implements Serializable {
 
 	//bi-directional many-to-one association to Servicer
 	@ManyToOne
-	@JoinColumn(name="id_serivce")
+	@JoinColumn(name="id_service")
 	private Servicer servicer;
 
 	public ServicePhoto() {

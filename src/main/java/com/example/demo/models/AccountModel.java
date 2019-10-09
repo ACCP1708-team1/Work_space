@@ -8,12 +8,12 @@ import java.util.List;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Account;
 import com.example.demo.repository.AccountRepository;
-
+@Service
 public class AccountModel implements ModelInteface<Account>{
-	@Autowired
 	private AccountRepository accountRepository;
 	public Account enCodePassword(Account account) {
 		if (account.getPassword() != "") {
@@ -30,6 +30,7 @@ public class AccountModel implements ModelInteface<Account>{
 		return account;
 	}
 	public boolean checkPassword(Account account,Account accountdb) {
+		account=enCodePassword(account);
 		return accountdb.getPassword().toUpperCase().equalsIgnoreCase(account.getPassword().toUpperCase());
 			
 	}
@@ -59,4 +60,11 @@ public class AccountModel implements ModelInteface<Account>{
 		// TODO Auto-generated method stub
 		return accountRepository.findWithUsername(username);
 	}
+	@Autowired
+	public AccountModel(AccountRepository accountRepository) {
+		super();
+		this.accountRepository = accountRepository;
+	}
+	
+	
 }

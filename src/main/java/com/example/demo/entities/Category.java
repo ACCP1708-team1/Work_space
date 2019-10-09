@@ -17,34 +17,21 @@ public class Category implements Serializable {
 	@Id
 	private int id;
 
+	private String avatar;
+
 	@Column(name="category_name")
 	private String categoryName;
+
+	@Lob
+	private String description;
 
 	private byte status;
 
 	private String title;
-	private String avatar;
-	private String description;
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	//bi-directional many-to-one association to Servicer
 	@OneToMany(mappedBy="category")
 	private List<Servicer> servicers;
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
 
 	public Category() {
 	}
@@ -57,12 +44,28 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
+	public String getAvatar() {
+		return this.avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	public String getCategoryName() {
 		return this.categoryName;
 	}
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public byte getStatus() {

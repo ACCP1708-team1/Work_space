@@ -25,6 +25,9 @@ public class CustomerReport implements Serializable {
 	@Column(name="create_date")
 	private Date createDate;
 
+	@Column(name="id_register_service")
+	private int idRegisterService;
+
 	private byte status;
 
 	private String title;
@@ -33,11 +36,6 @@ public class CustomerReport implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_account")
 	private Account account;
-
-	//bi-directional many-to-one association to RegisterService
-	@ManyToOne
-	@JoinColumn(name="id_register_service")
-	private RegisterService registerService;
 
 	public CustomerReport() {
 	}
@@ -66,6 +64,14 @@ public class CustomerReport implements Serializable {
 		this.createDate = createDate;
 	}
 
+	public int getIdRegisterService() {
+		return this.idRegisterService;
+	}
+
+	public void setIdRegisterService(int idRegisterService) {
+		this.idRegisterService = idRegisterService;
+	}
+
 	public byte getStatus() {
 		return this.status;
 	}
@@ -88,14 +94,6 @@ public class CustomerReport implements Serializable {
 
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-
-	public RegisterService getRegisterService() {
-		return this.registerService;
-	}
-
-	public void setRegisterService(RegisterService registerService) {
-		this.registerService = registerService;
 	}
 
 }

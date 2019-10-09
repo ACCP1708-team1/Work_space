@@ -35,6 +35,8 @@ public class Account implements Serializable {
 
 	private String fullname;
 
+	private String password;
+
 	private String phone;
 
 	private byte sex;
@@ -42,15 +44,6 @@ public class Account implements Serializable {
 	private byte status;
 
 	private String username;
-	private String password;
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	//bi-directional many-to-one association to AccountRole
 	@ManyToOne
@@ -61,9 +54,9 @@ public class Account implements Serializable {
 	@OneToMany(mappedBy="account")
 	private List<CustomerReport> customerReports;
 
-	//bi-directional many-to-one association to RegisterService
+	//bi-directional many-to-one association to Invoice
 	@OneToMany(mappedBy="account")
-	private List<RegisterService> registerServices;
+	private List<Invoice> invoices;
 
 	public Account() {
 	}
@@ -132,6 +125,14 @@ public class Account implements Serializable {
 		this.fullname = fullname;
 	}
 
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getPhone() {
 		return this.phone;
 	}
@@ -194,26 +195,26 @@ public class Account implements Serializable {
 		return customerReport;
 	}
 
-	public List<RegisterService> getRegisterServices() {
-		return this.registerServices;
+	public List<Invoice> getInvoices() {
+		return this.invoices;
 	}
 
-	public void setRegisterServices(List<RegisterService> registerServices) {
-		this.registerServices = registerServices;
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
 	}
 
-	public RegisterService addRegisterService(RegisterService registerService) {
-		getRegisterServices().add(registerService);
-		registerService.setAccount(this);
+	public Invoice addInvoice(Invoice invoice) {
+		getInvoices().add(invoice);
+		invoice.setAccount(this);
 
-		return registerService;
+		return invoice;
 	}
 
-	public RegisterService removeRegisterService(RegisterService registerService) {
-		getRegisterServices().remove(registerService);
-		registerService.setAccount(null);
+	public Invoice removeInvoice(Invoice invoice) {
+		getInvoices().remove(invoice);
+		invoice.setAccount(null);
 
-		return registerService;
+		return invoice;
 	}
 
 }
